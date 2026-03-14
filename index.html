@@ -10,355 +10,73 @@
   <link rel="apple-touch-icon" href="icon-192.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #0a0f0d;
-      --bg2: #111a15;
-      --bg3: #192420;
-      --card: #141f1a;
-      --border: rgba(255,255,255,0.08);
-      --border2: rgba(255,255,255,0.14);
-      --text: #e8f0ec;
-      --text2: #8aaa96;
-      --text3: #556b5e;
-      --green: #1D9E75;
-      --green-light: #5DCAA5;
-      --green-dim: rgba(29,158,117,0.15);
-      --amber: #EF9F27;
-      --amber-dim: rgba(239,159,39,0.12);
-      --red: #E24B4A;
-      --red-dim: rgba(226,75,74,0.12);
+      --bg: #0a0f0d; --bg2: #111a15; --bg3: #192420; --card: #141f1a;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text: #e8f0ec; --text2: #8aaa96; --text3: #556b5e;
+      --green: #1D9E75; --green-light: #5DCAA5; --green-dim: rgba(29,158,117,0.15);
+      --amber: #EF9F27; --amber-dim: rgba(239,159,39,0.12);
+      --red: #E24B4A; --red-dim: rgba(226,75,74,0.12);
     }
-
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 0 0 2rem;
-    }
-
-    .app {
-      width: 100%;
-      max-width: 420px;
-      padding: 0 1rem;
-    }
-
-    /* Header */
-    .header {
-      text-align: center;
-      padding: 2.5rem 0 2rem;
-    }
-
-    .moon-wrap {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 1.25rem;
-      position: relative;
-    }
-
-    .moon-glow {
-      position: absolute;
-      inset: -12px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(29,158,117,0.18) 0%, transparent 70%);
-      animation: glowpulse 3s ease-in-out infinite;
-    }
-
-    @keyframes glowpulse {
-      0%, 100% { opacity: 0.6; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.1); }
-    }
-
-    .moon-icon {
-      width: 72px;
-      height: 72px;
-      animation: moonpulse 3s ease-in-out infinite;
-    }
-
-    @keyframes moonpulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.04); }
-    }
-
-    h1 {
-      font-size: 24px;
-      font-weight: 600;
-      letter-spacing: -0.4px;
-      color: var(--text);
-    }
-
-    .tagline {
-      font-size: 13px;
-      color: var(--text2);
-      margin-top: 5px;
-    }
-
-    /* Cards */
-    .card {
-      background: var(--card);
-      border: 0.5px solid var(--border);
-      border-radius: 16px;
-      padding: 1.25rem;
-      margin-bottom: 0.875rem;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text3);
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 0.875rem;
-    }
-
-    /* Time picker */
-    .time-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-    }
-
-    .time-part {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .time-btn {
-      background: none;
-      border: none;
-      color: var(--green-light);
-      font-size: 22px;
-      cursor: pointer;
-      padding: 4px 12px;
-      border-radius: 8px;
-      line-height: 1;
-      transition: background 0.15s;
-    }
-
+    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 0 0 2rem; }
+    .app { width: 100%; max-width: 420px; padding: 0 1rem; }
+    .header { text-align: center; padding: 2.5rem 0 2rem; }
+    .moon-wrap { width: 72px; height: 72px; margin: 0 auto 1.25rem; position: relative; }
+    .moon-glow { position: absolute; inset: -12px; border-radius: 50%; background: radial-gradient(circle, rgba(29,158,117,0.18) 0%, transparent 70%); animation: glowpulse 3s ease-in-out infinite; }
+    @keyframes glowpulse { 0%,100%{opacity:.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+    .moon-icon { width: 72px; height: 72px; animation: moonpulse 3s ease-in-out infinite; }
+    @keyframes moonpulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
+    h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.4px; color: var(--text); }
+    .tagline { font-size: 13px; color: var(--text2); margin-top: 5px; }
+    .card { background: var(--card); border: 0.5px solid var(--border); border-radius: 16px; padding: 1.25rem; margin-bottom: 0.875rem; }
+    .section-label { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 0.875rem; }
+    .time-wrap { display: flex; align-items: center; justify-content: center; gap: 4px; }
+    .time-part { display: flex; flex-direction: column; align-items: center; }
+    .time-btn { background: none; border: none; color: var(--green-light); font-size: 22px; cursor: pointer; padding: 4px 12px; border-radius: 8px; line-height: 1; transition: background 0.15s; }
     .time-btn:hover { background: var(--green-dim); }
     .time-btn:active { transform: scale(0.92); }
-
-    .time-num {
-      font-size: 52px;
-      font-weight: 300;
-      color: var(--text);
-      letter-spacing: -2px;
-      min-width: 70px;
-      text-align: center;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .time-sep {
-      font-size: 44px;
-      font-weight: 300;
-      color: var(--text3);
-      margin-bottom: 4px;
-      line-height: 1;
-    }
-
-    .time-hint {
-      font-size: 12px;
-      color: var(--text2);
-      text-align: center;
-      margin-top: 0.875rem;
-    }
-
+    .time-num { font-size: 52px; font-weight: 300; color: var(--text); letter-spacing: -2px; min-width: 70px; text-align: center; line-height: 1; font-variant-numeric: tabular-nums; }
+    .time-sep { font-size: 44px; font-weight: 300; color: var(--text3); margin-bottom: 4px; line-height: 1; }
+    .time-hint { font-size: 12px; color: var(--text2); text-align: center; margin-top: 0.875rem; }
     .time-hint strong { color: var(--green-light); }
-
-    /* Rows */
-    .row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 11px 0;
-      border-bottom: 0.5px solid var(--border);
-    }
+    .row { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 0.5px solid var(--border); }
     .row:last-child { border-bottom: none; }
-
     .row-label { font-size: 14px; color: var(--text); }
     .row-sub { font-size: 12px; color: var(--text2); margin-top: 3px; }
-
-    /* Toggle */
-    .toggle {
-      width: 46px;
-      height: 26px;
-      background: var(--bg3);
-      border: 0.5px solid var(--border2);
-      border-radius: 13px;
-      cursor: pointer;
-      position: relative;
-      transition: background 0.2s, border-color 0.2s;
-      flex-shrink: 0;
-    }
-
-    .toggle.on {
-      background: var(--green);
-      border-color: var(--green);
-    }
-
-    .toggle-dot {
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #fff;
-      transition: transform 0.2s;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    }
-
+    .toggle { width: 46px; height: 26px; background: var(--bg3); border: 0.5px solid var(--border2); border-radius: 13px; cursor: pointer; position: relative; transition: background 0.2s, border-color 0.2s; flex-shrink: 0; }
+    .toggle.on { background: var(--green); border-color: var(--green); }
+    .toggle-dot { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
     .toggle.on .toggle-dot { transform: translateX(20px); }
-
-    /* Select */
-    select {
-      background: var(--bg3);
-      border: 0.5px solid var(--border2);
-      border-radius: 8px;
-      padding: 7px 10px;
-      font-size: 13px;
-      color: var(--text);
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-      padding-right: 24px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238aaa96' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 8px center;
-    }
-
+    select { background: var(--bg3); border: 0.5px solid var(--border2); border-radius: 8px; padding: 7px 10px; font-size: 13px; color: var(--text); cursor: pointer; appearance: none; -webkit-appearance: none; padding-right: 24px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238aaa96' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; }
     select:focus { outline: none; border-color: var(--green); }
-
-    /* Status box */
-    .status-box {
-      border-radius: 12px;
-      padding: 13px 16px;
-      font-size: 13px;
-      line-height: 1.5;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 0.875rem;
-    }
-
+    .status-box { border-radius: 12px; padding: 13px 16px; font-size: 13px; line-height: 1.5; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0.875rem; }
     .status-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
     .status-idle { background: var(--bg3); color: var(--text2); }
     .status-active { background: var(--green-dim); color: var(--green-light); border: 0.5px solid rgba(29,158,117,0.3); }
     .status-warn { background: var(--amber-dim); color: var(--amber); border: 0.5px solid rgba(239,159,39,0.25); }
     .status-error { background: var(--red-dim); color: var(--red); border: 0.5px solid rgba(226,75,74,0.2); }
-
-    /* Countdown */
-    .countdown-wrap {
-      text-align: center;
-      padding: 1.25rem;
-      margin-bottom: 0.875rem;
-      background: var(--card);
-      border: 0.5px solid var(--border);
-      border-radius: 16px;
-      display: none;
-    }
-
+    .countdown-wrap { text-align: center; padding: 1.25rem; margin-bottom: 0.875rem; background: var(--card); border: 0.5px solid var(--border); border-radius: 16px; display: none; }
     .countdown-wrap.show { display: block; }
-
-    .countdown-ring {
-      margin: 0 auto 12px;
-    }
-
     .ring-track { stroke: var(--bg3); }
-    .ring-progress {
-      stroke: var(--green);
-      stroke-linecap: round;
-      transform: rotate(-90deg);
-      transform-origin: 50% 50%;
-      transition: stroke-dashoffset 1s linear;
-    }
-
-    .countdown-time {
-      font-size: 36px;
-      font-weight: 300;
-      color: var(--text);
-      letter-spacing: -1px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .countdown-label {
-      font-size: 12px;
-      color: var(--text2);
-      margin-top: 4px;
-    }
-
-    /* Main button */
-    .btn-main {
-      width: 100%;
-      padding: 15px;
-      border-radius: 14px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.15s, transform 0.1s;
-      border: none;
-      letter-spacing: -0.2px;
-    }
-
+    .ring-progress { stroke: var(--green); stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 1s linear; }
+    .countdown-time { font-size: 36px; font-weight: 300; color: var(--text); letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+    .countdown-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+    .btn-main { width: 100%; padding: 15px; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.15s, transform 0.1s; border: none; letter-spacing: -0.2px; }
     .btn-main:active { transform: scale(0.98); }
-
-    .btn-start {
-      background: var(--green);
-      color: #fff;
-    }
-
-    .btn-start:hover { background: #1D9E75cc; }
-
-    .btn-stop {
-      background: var(--bg3);
-      color: var(--text);
-      border: 0.5px solid var(--border2);
-    }
-
-    /* Notif badge */
-    .notif-badge {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 20px;
-    }
-
+    .btn-start { background: var(--green); color: #fff; }
+    .btn-stop { background: var(--bg3); color: var(--text); border: 0.5px solid var(--border2); }
+    .notif-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
     .notif-ok { background: var(--green-dim); color: var(--green-light); }
     .notif-no { background: var(--amber-dim); color: var(--amber); }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      font-size: 11px;
-      color: var(--text3);
-      padding-top: 1.5rem;
-      line-height: 1.6;
-    }
-
-    /* Alarm firing animation */
-    @keyframes alarmflash {
-      0%, 100% { background: var(--card); }
-      50% { background: rgba(29,158,117,0.08); }
-    }
-
-    .alarm-firing { animation: alarmflash 0.8s ease-in-out 4; }
+    .footer { text-align: center; font-size: 11px; color: var(--text3); padding-top: 1.5rem; line-height: 1.6; }
+    .sw-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-top: 6px; }
+    .sw-ok { background: var(--green-dim); color: var(--green-light); }
+    .sw-no { background: var(--red-dim); color: var(--red); }
   </style>
 </head>
 <body>
 <div class="app">
-
   <div class="header">
     <div class="moon-wrap">
       <div class="moon-glow"></div>
@@ -376,15 +94,15 @@
     <div class="section-label">Orario sveglia</div>
     <div class="time-wrap">
       <div class="time-part">
-        <button class="time-btn" onclick="changeTime('h', 1)">▲</button>
+        <button class="time-btn" onclick="changeTime('h',1)">▲</button>
         <div class="time-num" id="dispH">04</div>
-        <button class="time-btn" onclick="changeTime('h', -1)">▼</button>
+        <button class="time-btn" onclick="changeTime('h',-1)">▼</button>
       </div>
       <div class="time-sep">:</div>
       <div class="time-part">
-        <button class="time-btn" onclick="changeTime('m', 5)">▲</button>
+        <button class="time-btn" onclick="changeTime('m',5)">▲</button>
         <div class="time-num" id="dispM">00</div>
-        <button class="time-btn" onclick="changeTime('m', -5)">▼</button>
+        <button class="time-btn" onclick="changeTime('m',-5)">▼</button>
       </div>
     </div>
     <div class="time-hint" id="timeHint">Calcolo in corso…</div>
@@ -412,12 +130,10 @@
     </div>
     <div class="row">
       <div>
-        <div class="row-label">Vibrazione su Band 8</div>
-        <div class="row-sub">La notifica arriva via Bluetooth</div>
+        <div class="row-label">Service Worker</div>
+        <div class="row-sub">Scheduler in background attivo</div>
       </div>
-      <div class="toggle on" id="watchToggle" onclick="toggleWatch()">
-        <div class="toggle-dot"></div>
-      </div>
+      <span class="sw-badge sw-no" id="swBadge">—</span>
     </div>
   </div>
 
@@ -427,10 +143,9 @@
   </div>
 
   <div class="countdown-wrap" id="countdownWrap">
-    <svg class="countdown-ring" width="80" height="80" viewBox="0 0 80 80">
+    <svg width="80" height="80" viewBox="0 0 80 80" style="margin:0 auto 12px;display:block;">
       <circle class="ring-track" cx="40" cy="40" r="34" fill="none" stroke-width="4"/>
-      <circle class="ring-progress" id="ringProgress" cx="40" cy="40" r="34" fill="none" stroke-width="4"
-        stroke-dasharray="213.6" stroke-dashoffset="0"/>
+      <circle class="ring-progress" id="ringProgress" cx="40" cy="40" r="34" fill="none" stroke-width="4" stroke-dasharray="213.6" stroke-dashoffset="0"/>
     </svg>
     <div class="countdown-time" id="countdownTime">—</div>
     <div class="countdown-label">al risveglio programmato</div>
@@ -439,31 +154,24 @@
   <button class="btn-main btn-start" id="btnMain" onclick="toggleAlarm()">Attiva sveglia</button>
 
   <div class="footer">
-    Installa: Chrome → menu ⋮ → "Aggiungi a schermata home"<br>
-    Tieni il telefono connesso e in carica durante la notte
+    Tieni il telefono in carica e connesso durante la notte<br>
+    <span id="swStatusText">Verifica Service Worker…</span>
   </div>
-
 </div>
 
 <script>
   let alarmH = 4, alarmM = 0;
   let alarmActive = false;
-  let alarmTimeout = null;
-  let repeatTimeouts = [];
-  let totalDelay = 0;
-  let startTime = null;
   let countdownInterval = null;
-  let watchEnabled = true;
+  let totalDelay = 0;
+  let swReg = null;
 
-  function pad(n) { return String(n).padStart(2, '0'); }
+  function pad(n) { return String(n).padStart(2,'0'); }
 
   function changeTime(part, delta) {
     if (alarmActive) return;
-    if (part === 'h') {
-      alarmH = (alarmH + delta + 24) % 24;
-    } else {
-      alarmM = (alarmM + delta + 60) % 60;
-    }
+    if (part === 'h') alarmH = (alarmH + delta + 24) % 24;
+    else alarmM = (alarmM + delta + 60) % 60;
     document.getElementById('dispH').textContent = pad(alarmH);
     document.getElementById('dispM').textContent = pad(alarmM);
     updateHint();
@@ -475,20 +183,51 @@
     target.setHours(alarmH, alarmM, 0, 0);
     if (target <= now) target.setDate(target.getDate() + 1);
     const diff = Math.round((target - now) / 60000);
-    const h = Math.floor(diff / 60);
-    const m = diff % 60;
+    const h = Math.floor(diff / 60), m = diff % 60;
     const txt = h > 0 ? `${h}h ${m}min` : `${m} min`;
-    const quality = h >= 5 && h <= 7 ? '✓ ottimo per il REM' : h < 5 ? '⚠ forse troppo presto' : '⚠ ciclo molto lungo';
-    document.getElementById('timeHint').innerHTML = `Tra <strong>${txt}</strong> — ${quality}`;
+    const q = h >= 5 && h <= 7 ? '✓ ottimo per il REM' : h < 5 ? '⚠ forse troppo presto' : '⚠ ciclo molto lungo';
+    document.getElementById('timeHint').innerHTML = `Tra <strong>${txt}</strong> — ${q}`;
   }
 
   updateHint();
   setInterval(updateHint, 30000);
 
-  function toggleWatch() {
-    watchEnabled = !watchEnabled;
-    document.getElementById('watchToggle').classList.toggle('on', watchEnabled);
+  function updateNotifBadge() {
+    const granted = Notification.permission === 'granted';
+    document.getElementById('notifBadge').className = 'notif-badge ' + (granted ? 'notif-ok' : 'notif-no');
+    document.getElementById('notifBadge').textContent = granted ? 'Attive' : 'Negate';
+    document.getElementById('notifSub').textContent = granted ? 'Inviate al Band 8 via Bluetooth' : 'Necessarie per la vibrazione';
   }
+
+  if ('Notification' in window) updateNotifBadge();
+
+  // Registra Service Worker
+  async function initSW() {
+    if (!('serviceWorker' in navigator)) {
+      document.getElementById('swBadge').textContent = 'N/A';
+      document.getElementById('swStatusText').textContent = 'Service Worker non supportato';
+      return;
+    }
+    try {
+      swReg = await navigator.serviceWorker.register('./sw.js');
+      await navigator.serviceWorker.ready;
+      document.getElementById('swBadge').className = 'sw-badge sw-ok';
+      document.getElementById('swBadge').textContent = 'Attivo';
+      document.getElementById('swStatusText').textContent = 'Scheduler background attivo ✓';
+
+      // Ascolta messaggi dal SW
+      navigator.serviceWorker.addEventListener('message', e => {
+        if (e.data.type === 'ALARM_FIRED') {
+          handleAlarmFired(e.data.index);
+        }
+      });
+    } catch(err) {
+      document.getElementById('swBadge').textContent = 'Errore';
+      document.getElementById('swStatusText').textContent = 'Errore SW: ' + err.message;
+    }
+  }
+
+  initSW();
 
   function setStatus(type, icon, html) {
     const box = document.getElementById('statusBox');
@@ -496,31 +235,13 @@
     box.innerHTML = `<span class="status-icon">${icon}</span><div>${html}</div>`;
   }
 
-  function updateNotifBadge() {
-    const granted = Notification.permission === 'granted';
-    const badge = document.getElementById('notifBadge');
-    const sub = document.getElementById('notifSub');
-    if (granted) {
-      badge.className = 'notif-badge notif-ok';
-      badge.textContent = 'Attive';
-      sub.textContent = 'Inviate al Band 8 via Bluetooth';
-    } else {
-      badge.className = 'notif-badge notif-no';
-      badge.textContent = 'Negate';
-      sub.textContent = 'Necessarie per la vibrazione';
-    }
-  }
-
-  if ('Notification' in window) updateNotifBadge();
-
   function startCountdown(targetTime) {
     const wrap = document.getElementById('countdownWrap');
     const timeEl = document.getElementById('countdownTime');
     const ring = document.getElementById('ringProgress');
     const circumference = 213.6;
     wrap.classList.add('show');
-    startTime = Date.now();
-    totalDelay = targetTime - startTime;
+    totalDelay = targetTime - Date.now();
 
     function tick() {
       const remaining = Math.max(0, targetTime - Date.now());
@@ -528,60 +249,30 @@
       const m = Math.floor((remaining % 3600000) / 60000);
       const s = Math.floor((remaining % 60000) / 1000);
       timeEl.textContent = (h > 0 ? pad(h) + ':' : '') + pad(m) + ':' + pad(s);
-      const pct = remaining / totalDelay;
-      ring.style.strokeDashoffset = circumference * (1 - pct);
-      if (remaining > 0 && alarmActive) {
-        countdownInterval = setTimeout(tick, 500);
-      } else {
-        wrap.classList.remove('show');
-      }
+      ring.style.strokeDashoffset = circumference * (1 - remaining / totalDelay);
+      if (remaining > 0 && alarmActive) countdownInterval = setTimeout(tick, 500);
+      else wrap.classList.remove('show');
     }
     tick();
   }
 
-  function fireAlarm(index) {
-    const titles = [
-      '🌙 Sveglia Raduga',
-      '🌙 Raduga — ripetizione',
-    ];
-    const bodies = [
-      'Rimani immobile. Non aprire gli occhi. Entra nella Fase.',
-      `Ripetizione ${index}/3 — rimani immobile, torna nel sogno lucido.`,
-    ];
-    const title = index === 0 ? titles[0] : titles[1];
-    const body = index === 0 ? bodies[0] : bodies[1];
-
-    if (Notification.permission === 'granted') {
-      new Notification(title, {
-        body,
-        icon: 'icon-192.png',
-        badge: 'icon-192.png',
-        vibrate: [400, 150, 400, 150, 600],
-        tag: 'raduga-' + index,
-        requireInteraction: true,
-        silent: false
-      });
-    } else {
-      alert(title + '\n\n' + body);
-    }
-
+  function handleAlarmFired(index) {
+    setStatus('active', '🌙', index === 0
+      ? '<strong>Sveglia!</strong> Rimani immobile. Non aprire gli occhi. Entra nella Fase.'
+      : `<strong>Ripetizione ${index}/3</strong> — rimani immobile, torna nel sogno.`
+    );
     document.getElementById('countdownWrap').classList.remove('show');
-    setStatus('active', '🌙', `<strong>${title}</strong><br>${body}`);
-    document.body.classList.add('alarm-firing');
-    setTimeout(() => document.body.classList.remove('alarm-firing'), 4000);
+    if (index >= 3) stopAlarm(true);
   }
 
   async function toggleAlarm() {
-    if (alarmActive) {
-      stopAlarm();
-      return;
-    }
+    if (alarmActive) { stopAlarm(); return; }
 
     if ('Notification' in window && Notification.permission !== 'granted') {
       const p = await Notification.requestPermission();
       updateNotifBadge();
       if (p !== 'granted') {
-        setStatus('warn', '⚠️', 'Permesso notifiche negato. Vai in <strong>Impostazioni browser → Notifiche</strong> e abilita questo sito.');
+        setStatus('warn', '⚠️', 'Permesso notifiche negato. Vai in <strong>Impostazioni Chrome → Notifiche</strong> e abilita questo sito.');
         return;
       }
     }
@@ -590,51 +281,33 @@
     const target = new Date();
     target.setHours(alarmH, alarmM, 0, 0);
     if (target <= now) target.setDate(target.getDate() + 1);
-    const delay = target - now;
+    const targetTime = target.getTime();
     const repeatMin = parseInt(document.getElementById('repeatSel').value);
+
+    // Invia al Service Worker per scheduling in background
+    const sw = await navigator.serviceWorker.ready;
+    sw.active.postMessage({ type: 'SCHEDULE_ALARM', targetTime, repeatMin });
 
     alarmActive = true;
     document.getElementById('btnMain').textContent = 'Disattiva sveglia';
     document.getElementById('btnMain').className = 'btn-main btn-stop';
 
-    const diffMin = Math.round(delay / 60000);
-    const hh = Math.floor(diffMin / 60);
-    const mm = diffMin % 60;
-    setStatus('active', '🌙', `Sveglia attiva — scatterà tra <strong>${hh > 0 ? hh + 'h ' : ''}${mm} min</strong> alle ${pad(alarmH)}:${pad(alarmM)}`);
-
-    startCountdown(target);
-
-    alarmTimeout = setTimeout(() => {
-      fireAlarm(0);
-      if (repeatMin > 0) {
-        for (let i = 1; i <= 3; i++) {
-          const rt = setTimeout(() => {
-            if (alarmActive) fireAlarm(i);
-          }, i * repeatMin * 60000);
-          repeatTimeouts.push(rt);
-        }
-        setTimeout(() => { if (alarmActive) stopAlarm(true); }, (3 * repeatMin + 2) * 60000);
-      } else {
-        setTimeout(() => { if (alarmActive) stopAlarm(true); }, 2 * 60000);
-      }
-    }, delay);
+    const diff = Math.round((target - now) / 60000);
+    const h = Math.floor(diff / 60), m = diff % 60;
+    setStatus('active', '🌙', `Sveglia attiva via Service Worker — scatterà tra <strong>${h > 0 ? h + 'h ' : ''}${m} min</strong> alle ${pad(alarmH)}:${pad(alarmM)}`);
+    startCountdown(targetTime);
   }
 
   function stopAlarm(auto) {
-    clearTimeout(alarmTimeout);
+    if (swReg && swReg.active) {
+      swReg.active.postMessage({ type: 'CANCEL_ALARM' });
+    }
     clearTimeout(countdownInterval);
-    repeatTimeouts.forEach(clearTimeout);
-    repeatTimeouts = [];
     alarmActive = false;
     document.getElementById('btnMain').textContent = 'Attiva sveglia';
     document.getElementById('btnMain').className = 'btn-main btn-start';
     document.getElementById('countdownWrap').classList.remove('show');
     if (!auto) setStatus('idle', '🌙', 'Sveglia disattivata. Buona fortuna con la Fase!');
-  }
-
-  // Service Worker
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
   }
 </script>
 </body>
