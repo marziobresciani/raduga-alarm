@@ -4,75 +4,83 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fase di Raduga</title>
-  <meta name="description" content="Sveglia per sogni lucidi - metodo WBTB di Michael Raduga" />
   <meta name="theme-color" content="#0F6E56" />
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icon-192.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0a0f0d; --bg2: #111a15; --bg3: #192420; --card: #141f1a;
+      --bg: #0a0f0d; --bg3: #192420; --card: #141f1a;
       --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
       --text: #e8f0ec; --text2: #8aaa96; --text3: #556b5e;
       --green: #1D9E75; --green-light: #5DCAA5; --green-dim: rgba(29,158,117,0.15);
       --amber: #EF9F27; --amber-dim: rgba(239,159,39,0.12);
       --red: #E24B4A; --red-dim: rgba(226,75,74,0.12);
     }
-    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+    html, body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
     body { display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 0 0 2rem; }
     .app { width: 100%; max-width: 420px; padding: 0 1rem; }
-    .header { text-align: center; padding: 2.5rem 0 2rem; }
-    .moon-wrap { width: 72px; height: 72px; margin: 0 auto 1.25rem; position: relative; }
+    .header { text-align: center; padding: 2rem 0 1.5rem; }
+    .moon-wrap { width: 72px; height: 72px; margin: 0 auto 1rem; position: relative; }
     .moon-glow { position: absolute; inset: -12px; border-radius: 50%; background: radial-gradient(circle, rgba(29,158,117,0.18) 0%, transparent 70%); animation: glowpulse 3s ease-in-out infinite; }
     @keyframes glowpulse { 0%,100%{opacity:.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
     .moon-icon { width: 72px; height: 72px; animation: moonpulse 3s ease-in-out infinite; }
     @keyframes moonpulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
-    h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.4px; color: var(--text); }
-    .tagline { font-size: 13px; color: var(--text2); margin-top: 5px; }
+    h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.4px; }
+    .tagline { font-size: 13px; color: var(--text2); margin-top: 4px; }
     .card { background: var(--card); border: 0.5px solid var(--border); border-radius: 16px; padding: 1.25rem; margin-bottom: 0.875rem; }
-    .section-label { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 0.875rem; }
-    .time-wrap { display: flex; align-items: center; justify-content: center; gap: 4px; }
+    .section-label { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 1rem; }
+    .time-wrap { display: flex; align-items: center; justify-content: center; gap: 8px; }
     .time-part { display: flex; flex-direction: column; align-items: center; }
-    .time-btn { background: none; border: none; color: var(--green-light); font-size: 22px; cursor: pointer; padding: 4px 12px; border-radius: 8px; line-height: 1; transition: background 0.15s; }
-    .time-btn:hover { background: var(--green-dim); }
-    .time-btn:active { transform: scale(0.92); }
-    .time-num { font-size: 52px; font-weight: 300; color: var(--text); letter-spacing: -2px; min-width: 70px; text-align: center; line-height: 1; font-variant-numeric: tabular-nums; }
-    .time-sep { font-size: 44px; font-weight: 300; color: var(--text3); margin-bottom: 4px; line-height: 1; }
-    .time-hint { font-size: 12px; color: var(--text2); text-align: center; margin-top: 0.875rem; }
+    .time-btn {
+      background: var(--bg3); border: 0.5px solid var(--border2);
+      color: var(--green-light); font-size: 20px; cursor: pointer;
+      width: 56px; height: 48px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s; user-select: none; -webkit-user-select: none;
+    }
+    .time-btn:active { background: var(--green-dim); transform: scale(0.95); }
+    .time-num { font-size: 56px; font-weight: 300; color: var(--text); letter-spacing: -2px; min-width: 76px; text-align: center; line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .time-sep { font-size: 48px; font-weight: 300; color: var(--text3); line-height: 1.1; padding-bottom: 4px; }
+    .time-hint { font-size: 12px; color: var(--text2); text-align: center; margin-top: 1rem; }
     .time-hint strong { color: var(--green-light); }
-    .row { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 0.5px solid var(--border); }
+    .row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 0.5px solid var(--border); }
     .row:last-child { border-bottom: none; }
     .row-label { font-size: 14px; color: var(--text); }
     .row-sub { font-size: 12px; color: var(--text2); margin-top: 3px; }
-    .toggle { width: 46px; height: 26px; background: var(--bg3); border: 0.5px solid var(--border2); border-radius: 13px; cursor: pointer; position: relative; transition: background 0.2s, border-color 0.2s; flex-shrink: 0; }
-    .toggle.on { background: var(--green); border-color: var(--green); }
-    .toggle-dot { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
-    .toggle.on .toggle-dot { transform: translateX(20px); }
-    select { background: var(--bg3); border: 0.5px solid var(--border2); border-radius: 8px; padding: 7px 10px; font-size: 13px; color: var(--text); cursor: pointer; appearance: none; -webkit-appearance: none; padding-right: 24px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238aaa96' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; }
-    select:focus { outline: none; border-color: var(--green); }
+    .stepper { display: flex; align-items: center; gap: 10px; }
+    .step-btn {
+      background: var(--bg3); border: 0.5px solid var(--border2);
+      color: var(--green-light); font-size: 18px; cursor: pointer;
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s; user-select: none;
+    }
+    .step-btn:active { background: var(--green-dim); }
+    .step-val { font-size: 18px; font-weight: 500; color: var(--text); min-width: 28px; text-align: center; }
     .status-box { border-radius: 12px; padding: 13px 16px; font-size: 13px; line-height: 1.5; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0.875rem; }
     .status-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
     .status-idle { background: var(--bg3); color: var(--text2); }
     .status-active { background: var(--green-dim); color: var(--green-light); border: 0.5px solid rgba(29,158,117,0.3); }
     .status-warn { background: var(--amber-dim); color: var(--amber); border: 0.5px solid rgba(239,159,39,0.25); }
-    .status-error { background: var(--red-dim); color: var(--red); border: 0.5px solid rgba(226,75,74,0.2); }
     .countdown-wrap { text-align: center; padding: 1.25rem; margin-bottom: 0.875rem; background: var(--card); border: 0.5px solid var(--border); border-radius: 16px; display: none; }
     .countdown-wrap.show { display: block; }
     .ring-track { stroke: var(--bg3); }
     .ring-progress { stroke: var(--green); stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 1s linear; }
     .countdown-time { font-size: 36px; font-weight: 300; color: var(--text); letter-spacing: -1px; font-variant-numeric: tabular-nums; }
     .countdown-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
-    .btn-main { width: 100%; padding: 15px; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.15s, transform 0.1s; border: none; letter-spacing: -0.2px; }
+    .btn-main { width: 100%; padding: 16px; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.15s, transform 0.1s; border: none; letter-spacing: -0.2px; }
     .btn-main:active { transform: scale(0.98); }
     .btn-start { background: var(--green); color: #fff; }
     .btn-stop { background: var(--bg3); color: var(--text); border: 0.5px solid var(--border2); }
     .notif-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
     .notif-ok { background: var(--green-dim); color: var(--green-light); }
     .notif-no { background: var(--amber-dim); color: var(--amber); }
-    .footer { text-align: center; font-size: 11px; color: var(--text3); padding-top: 1.5rem; line-height: 1.6; }
-    .sw-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-top: 6px; }
-    .sw-ok { background: var(--green-dim); color: var(--green-light); }
-    .sw-no { background: var(--red-dim); color: var(--red); }
+    .footer { text-align: center; font-size: 11px; color: var(--text3); padding-top: 1.5rem; line-height: 1.8; }
+    .firing-indicator { display: none; text-align: center; padding: 1rem; margin-bottom: 0.875rem; background: var(--green-dim); border: 0.5px solid rgba(29,158,117,0.3); border-radius: 12px; color: var(--green-light); font-size: 14px; }
+    .firing-indicator.show { display: block; }
+    @keyframes firepulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .firing-indicator.show { animation: firepulse 0.5s ease-in-out infinite; }
   </style>
 </head>
 <body>
@@ -100,9 +108,9 @@
       </div>
       <div class="time-sep">:</div>
       <div class="time-part">
-        <button class="time-btn" onclick="changeTime('m',5)">▲</button>
+        <button class="time-btn" onclick="changeTime('m',1)">▲</button>
         <div class="time-num" id="dispM">00</div>
-        <button class="time-btn" onclick="changeTime('m',-5)">▼</button>
+        <button class="time-btn" onclick="changeTime('m',-1)">▼</button>
       </div>
     </div>
     <div class="time-hint" id="timeHint">Calcolo in corso…</div>
@@ -112,14 +120,14 @@
     <div class="section-label">Impostazioni</div>
     <div class="row">
       <div>
-        <div class="row-label">Ripeti vibrazione</div>
-        <div class="row-sub">Se non ti svegli, ripete fino a 3 volte</div>
+        <div class="row-label">Numero notifiche</div>
+        <div class="row-sub">Inviate a 1 sec l'una dall'altra, poi stop</div>
       </div>
-      <select id="repeatSel">
-        <option value="0">No</option>
-        <option value="2" selected>ogni 2 min</option>
-        <option value="5">ogni 5 min</option>
-      </select>
+      <div class="stepper">
+        <button class="step-btn" onclick="changeRepeat(-1)">−</button>
+        <div class="step-val" id="repeatVal">5</div>
+        <button class="step-btn" onclick="changeRepeat(1)">+</button>
+      </div>
     </div>
     <div class="row">
       <div>
@@ -128,19 +136,14 @@
       </div>
       <span class="notif-badge notif-no" id="notifBadge">—</span>
     </div>
-    <div class="row">
-      <div>
-        <div class="row-label">Service Worker</div>
-        <div class="row-sub">Scheduler in background attivo</div>
-      </div>
-      <span class="sw-badge sw-no" id="swBadge">—</span>
-    </div>
   </div>
 
   <div class="status-box status-idle" id="statusBox">
     <span class="status-icon">🌙</span>
     <div>Imposta l'orario e premi <strong>Attiva</strong> per iniziare.</div>
   </div>
+
+  <div class="firing-indicator" id="firingIndicator">🌙 Sveglia in corso…</div>
 
   <div class="countdown-wrap" id="countdownWrap">
     <svg width="80" height="80" viewBox="0 0 80 80" style="margin:0 auto 12px;display:block;">
@@ -154,17 +157,21 @@
   <button class="btn-main btn-start" id="btnMain" onclick="toggleAlarm()">Attiva sveglia</button>
 
   <div class="footer">
-    Tieni il telefono in carica e connesso durante la notte<br>
-    <span id="swStatusText">Verifica Service Worker…</span>
+    Tieni lo schermo acceso o l'app in primo piano<br>
+    per garantire l'arrivo della notifica
   </div>
 </div>
 
 <script>
   let alarmH = 4, alarmM = 0;
+  let repeatCount = 5;
   let alarmActive = false;
-  let countdownInterval = null;
+  let alarmTimeout = null;
+  let countdownTick = null;
   let totalDelay = 0;
-  let swReg = null;
+  // Audio silenzioso per tenere sveglio il browser
+  let audioCtx = null;
+  let keepAliveInterval = null;
 
   function pad(n) { return String(n).padStart(2,'0'); }
 
@@ -175,6 +182,11 @@
     document.getElementById('dispH').textContent = pad(alarmH);
     document.getElementById('dispM').textContent = pad(alarmM);
     updateHint();
+  }
+
+  function changeRepeat(delta) {
+    repeatCount = Math.max(1, Math.min(10, repeatCount + delta));
+    document.getElementById('repeatVal').textContent = repeatCount;
   }
 
   function updateHint() {
@@ -188,51 +200,41 @@
     const q = h >= 5 && h <= 7 ? '✓ ottimo per il REM' : h < 5 ? '⚠ forse troppo presto' : '⚠ ciclo molto lungo';
     document.getElementById('timeHint').innerHTML = `Tra <strong>${txt}</strong> — ${q}`;
   }
-
   updateHint();
   setInterval(updateHint, 30000);
 
   function updateNotifBadge() {
-    const granted = Notification.permission === 'granted';
-    document.getElementById('notifBadge').className = 'notif-badge ' + (granted ? 'notif-ok' : 'notif-no');
-    document.getElementById('notifBadge').textContent = granted ? 'Attive' : 'Negate';
-    document.getElementById('notifSub').textContent = granted ? 'Inviate al Band 8 via Bluetooth' : 'Necessarie per la vibrazione';
+    const ok = Notification.permission === 'granted';
+    document.getElementById('notifBadge').className = 'notif-badge ' + (ok ? 'notif-ok' : 'notif-no');
+    document.getElementById('notifBadge').textContent = ok ? 'Attive' : 'Negate';
+    document.getElementById('notifSub').textContent = ok ? 'Pronte per il Band 8' : 'Necessarie per la vibrazione';
   }
-
   if ('Notification' in window) updateNotifBadge();
-
-  // Registra Service Worker
-  async function initSW() {
-    if (!('serviceWorker' in navigator)) {
-      document.getElementById('swBadge').textContent = 'N/A';
-      document.getElementById('swStatusText').textContent = 'Service Worker non supportato';
-      return;
-    }
-    try {
-      swReg = await navigator.serviceWorker.register('./sw.js');
-      await navigator.serviceWorker.ready;
-      document.getElementById('swBadge').className = 'sw-badge sw-ok';
-      document.getElementById('swBadge').textContent = 'Attivo';
-      document.getElementById('swStatusText').textContent = 'Scheduler background attivo ✓';
-
-      // Ascolta messaggi dal SW
-      navigator.serviceWorker.addEventListener('message', e => {
-        if (e.data.type === 'ALARM_FIRED') {
-          handleAlarmFired(e.data.index);
-        }
-      });
-    } catch(err) {
-      document.getElementById('swBadge').textContent = 'Errore';
-      document.getElementById('swStatusText').textContent = 'Errore SW: ' + err.message;
-    }
-  }
-
-  initSW();
 
   function setStatus(type, icon, html) {
     const box = document.getElementById('statusBox');
     box.className = 'status-box status-' + type;
     box.innerHTML = `<span class="status-icon">${icon}</span><div>${html}</div>`;
+  }
+
+  // Audio silenzioso — trucco per impedire ad Android di killare il tab
+  function startKeepAlive() {
+    try {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      function playsilence() {
+        const buf = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.1, audioCtx.sampleRate);
+        const src = audioCtx.createBufferSource();
+        src.buffer = buf;
+        src.connect(audioCtx.destination);
+        src.start();
+      }
+      keepAliveInterval = setInterval(playsilence, 20000);
+    } catch(e) {}
+  }
+
+  function stopKeepAlive() {
+    if (keepAliveInterval) clearInterval(keepAliveInterval);
+    if (audioCtx) { audioCtx.close(); audioCtx = null; }
   }
 
   function startCountdown(targetTime) {
@@ -250,19 +252,58 @@
       const s = Math.floor((remaining % 60000) / 1000);
       timeEl.textContent = (h > 0 ? pad(h) + ':' : '') + pad(m) + ':' + pad(s);
       ring.style.strokeDashoffset = circumference * (1 - remaining / totalDelay);
-      if (remaining > 0 && alarmActive) countdownInterval = setTimeout(tick, 500);
+      if (remaining > 0 && alarmActive) countdownTick = setTimeout(tick, 500);
       else wrap.classList.remove('show');
     }
     tick();
   }
 
-  function handleAlarmFired(index) {
-    setStatus('active', '🌙', index === 0
-      ? '<strong>Sveglia!</strong> Rimani immobile. Non aprire gli occhi. Entra nella Fase.'
-      : `<strong>Ripetizione ${index}/3</strong> — rimani immobile, torna nel sogno.`
-    );
+  async function fireAlarms() {
     document.getElementById('countdownWrap').classList.remove('show');
-    if (index >= 3) stopAlarm(true);
+    document.getElementById('firingIndicator').classList.add('show');
+    setStatus('active', '🌙', '<strong>Sveglia!</strong> Rimani immobile. Entra nella Fase.');
+
+    for (let i = 0; i < repeatCount; i++) {
+      if (!alarmActive) break;
+      await sendNotification(i);
+      if (i < repeatCount - 1) await sleep(1000);
+    }
+
+    // Auto-stop dopo tutte le notifiche
+    setTimeout(() => {
+      document.getElementById('firingIndicator').classList.remove('show');
+      stopAlarm(true);
+    }, 3000);
+  }
+
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  async function sendNotification(index) {
+    if (Notification.permission === 'granted') {
+      // Usa SW se disponibile, altrimenti Notification diretta
+      if ('serviceWorker' in navigator) {
+        const reg = await navigator.serviceWorker.getRegistration();
+        if (reg) {
+          await reg.showNotification('🌙 Sveglia Raduga', {
+            body: 'Rimani immobile. Non aprire gli occhi. Entra nella Fase.',
+            icon: './icon-192.png',
+            badge: './icon-192.png',
+            vibrate: [400, 150, 400, 150, 600],
+            tag: 'raduga-' + index,
+            requireInteraction: false,
+            silent: false,
+            renotify: true
+          });
+          return;
+        }
+      }
+      new Notification('🌙 Sveglia Raduga', {
+        body: 'Rimani immobile. Non aprire gli occhi. Entra nella Fase.',
+        icon: './icon-192.png',
+        tag: 'raduga-' + index,
+        renotify: true
+      });
+    }
   }
 
   async function toggleAlarm() {
@@ -272,7 +313,7 @@
       const p = await Notification.requestPermission();
       updateNotifBadge();
       if (p !== 'granted') {
-        setStatus('warn', '⚠️', 'Permesso notifiche negato. Vai in <strong>Impostazioni Chrome → Notifiche</strong> e abilita questo sito.');
+        setStatus('warn', '⚠️', 'Abilita le notifiche nelle impostazioni di Chrome per questo sito.');
         return;
       }
     }
@@ -281,33 +322,38 @@
     const target = new Date();
     target.setHours(alarmH, alarmM, 0, 0);
     if (target <= now) target.setDate(target.getDate() + 1);
-    const targetTime = target.getTime();
-    const repeatMin = parseInt(document.getElementById('repeatSel').value);
-
-    // Invia al Service Worker per scheduling in background
-    const sw = await navigator.serviceWorker.ready;
-    sw.active.postMessage({ type: 'SCHEDULE_ALARM', targetTime, repeatMin });
+    const delay = target - now;
 
     alarmActive = true;
     document.getElementById('btnMain').textContent = 'Disattiva sveglia';
     document.getElementById('btnMain').className = 'btn-main btn-stop';
 
-    const diff = Math.round((target - now) / 60000);
+    const diff = Math.round(delay / 60000);
     const h = Math.floor(diff / 60), m = diff % 60;
-    setStatus('active', '🌙', `Sveglia attiva via Service Worker — scatterà tra <strong>${h > 0 ? h + 'h ' : ''}${m} min</strong> alle ${pad(alarmH)}:${pad(alarmM)}`);
-    startCountdown(targetTime);
+    setStatus('active', '🌙', `Attiva — scatterà tra <strong>${h > 0 ? h + 'h ' : ''}${m} min</strong> con <strong>${repeatCount} notifiche</strong>`);
+
+    startCountdown(target.getTime());
+    startKeepAlive();
+
+    alarmTimeout = setTimeout(() => {
+      if (alarmActive) fireAlarms();
+    }, delay);
   }
 
   function stopAlarm(auto) {
-    if (swReg && swReg.active) {
-      swReg.active.postMessage({ type: 'CANCEL_ALARM' });
-    }
-    clearTimeout(countdownInterval);
+    clearTimeout(alarmTimeout);
+    clearTimeout(countdownTick);
+    stopKeepAlive();
     alarmActive = false;
     document.getElementById('btnMain').textContent = 'Attiva sveglia';
     document.getElementById('btnMain').className = 'btn-main btn-start';
     document.getElementById('countdownWrap').classList.remove('show');
+    document.getElementById('firingIndicator').classList.remove('show');
     if (!auto) setStatus('idle', '🌙', 'Sveglia disattivata. Buona fortuna con la Fase!');
+  }
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
   }
 </script>
 </body>
