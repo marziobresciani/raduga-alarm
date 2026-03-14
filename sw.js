@@ -1,4 +1,4 @@
-const CACHE = 'raduga-v4';
+const CACHE = 'raduga-v3';
 const ASSETS = ['./', './index.html', './manifest.json'];
 
 self.addEventListener('install', e => {

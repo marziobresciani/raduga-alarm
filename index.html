@@ -125,7 +125,7 @@
       </div>
       <div class="stepper">
         <button class="step-btn" onclick="changeRepeat(-1)">−</button>
-        <div class="step-val" id="repeatVal">5</div>
+        <div class="step-val" id="repeatVal">3</div>
         <button class="step-btn" onclick="changeRepeat(1)">+</button>
       </div>
     </div>
@@ -164,7 +164,7 @@
 
 <script>
   let alarmH = 4, alarmM = 0;
-  let repeatCount = 5;
+  let repeatCount = 3;
   let alarmActive = false;
   let alarmTimeout = null;
   let countdownTick = null;
@@ -266,7 +266,7 @@
     for (let i = 0; i < repeatCount; i++) {
       if (!alarmActive) break;
       await sendNotification(i);
-      if (i < repeatCount - 1) await sleep(1000);
+      if (i < repeatCount - 1) await sleep(2000);
     }
 
     // Auto-stop dopo tutte le notifiche
