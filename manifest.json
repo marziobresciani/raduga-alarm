@@ -2,7 +2,7 @@
   "name": "Fase di Raduga",
   "short_name": "Raduga",
   "description": "Sveglia per sogni lucidi - metodo WBTB di Michael Raduga",
-  "start_url": "./?v=2",
+"start_url": ".",
   "display": "standalone",
   "background_color": "#0a0f0d",
   "theme_color": "#0F6E56",
