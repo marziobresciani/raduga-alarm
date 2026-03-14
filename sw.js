@@ -1,4 +1,4 @@
-const CACHE = 'raduga-v2';
+const CACHE = 'raduga-v3';
 const ASSETS = ['./', './index.html', './manifest.json'];
 
 self.addEventListener('install', e => {
@@ -58,32 +58,33 @@ function scheduleAlarm(baseTime, repeatMin, index) {
 }
 
 function fireNotification(index) {
-  const title = index === 0 ? '🌙 Sveglia Raduga' : '🌙 Raduga — ripetizione';
+  const title = index === 0 ? '🌙 Sveglia Raduga' : '🌙 Raduga — ripetizione ' + index;
   const body = index === 0
     ? 'Rimani immobile. Non aprire gli occhi. Entra nella Fase.'
-    : `Ripetizione ${index}/3 — rimani immobile, torna nel sogno lucido.`;
+    : 'Ripetizione ' + index + '/3 — rimani immobile, torna nel sogno.';
 
-  self.registration.showNotification(title, {
-    body,
+  return self.registration.showNotification(title, {
+    body: body,
     icon: './icon-192.png',
     badge: './icon-192.png',
     vibrate: [400, 150, 400, 150, 600],
-    tag: 'raduga-' + index,
+    tag: 'raduga-alarm-' + index,
     requireInteraction: true,
-    silent: false
+    silent: false,
+    renotify: true
   });
 }
 
 self.addEventListener('notificationclick', e => {
   e.notification.close();
   e.waitUntil(
-    self.clients.matchAll({ type: 'window' }).then(clients => {
-      if (clients.length > 0) {
-        clients[0].focus();
-        clients[0].postMessage({ type: 'NOTIFICATION_CLICKED' });
-      } else {
-        self.clients.openWindow('./');
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clients => {
+      for (const client of clients) {
+        if (client.url.includes('raduga-alarm') && 'focus' in client) {
+          return client.focus();
+        }
       }
+      return self.clients.openWindow('./');
     })
   );
 });
