@@ -1,41 +1,43 @@
-# 🌙 Fase di Raduga — PWA Sveglia
+const CACHE = 'raduga-v1';
+const ASSETS = ['/', '/index.html', '/manifest.json'];
 
-App PWA per sogni lucidi con il metodo WBTB di Michael Raduga.  
-Invia una notifica all'orario programmato → il tuo Huawei Band 8 vibra.
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(CACHE).then(c => c.addAll(ASSETS))
+  );
+  self.skipWaiting();
+});
 
-## Come pubblicare su GitHub Pages
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+    )
+  );
+  self.clients.claim();
+});
 
-### 1. Crea un repository su GitHub
-- Vai su [github.com](https://github.com) e fai login
-- Clicca **New repository**
-- Nome: `raduga-alarm`
-- Spunta **"Add a README file"**
-- Clicca **Create repository**
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(r => r || fetch(e.request))
+  );
+});
 
-### 2. Carica i file
-- Nel repository appena creato, clicca **"uploading an existing file"**
-- Trascina tutti i file (`index.html`, `manifest.json`, `sw.js`)
-- Crea la cartella `icons/` e carica `icon-192.png` e `icon-512.png`
-- Clicca **Commit changes**
+self.addEventListener('push', e => {
+  const data = e.data ? e.data.json() : { title: 'Raduga', body: 'Rimani immobile.' };
+  e.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: '/icon-192.png',
+      badge: '/icon-192.png',
+      vibrate: [400, 150, 400, 150, 600],
+      requireInteraction: true,
+      tag: 'raduga'
+    })
+  );
+});
 
-### 3. Abilita GitHub Pages
-- Vai su **Settings** → **Pages**
-- Source: **Deploy from a branch**
-- Branch: **main** → cartella **/ (root)**
-- Clicca **Save**
-
-### 4. Attendi 1-2 minuti
-La tua app sarà disponibile su:  
-`https://tuonomeutente.github.io/raduga-alarm`
-
-## Come installare sul telefono
-1. Apri Chrome Android
-2. Vai all'URL della tua app
-3. Menu ⋮ → **"Aggiungi a schermata home"**
-4. Concedi il permesso notifiche
-
-## Funzionamento
-- Imposta l'orario (consigliato: +5.5-6h dall'orario in cui vai a letto)
-- Premi **Attiva sveglia**
-- La notifica push arriva al telefono → il Band 8 vibra via Bluetooth
-- Rimani immobile e lasciati trasportare nella Fase!
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  e.waitUntil(clients.openWindow('/'));
+});
